@@ -1,4 +1,5 @@
 import random
+import time
 import matplotlib.pyplot as plt
 
 class Point:
@@ -19,11 +20,8 @@ def orientation(p0, p1, p2):
         return 0
 
 def check_orientation(temp):
-    if(len(temp)>=3):
-        if (orientation(temp[-3], temp[-2], temp[-1])) > 0:
-            temp.pop(-2)
-            check_orientation(temp)
-
+    while len(temp)>=3 and orientation(temp[-3], temp[-2], temp[-1]) <= 0:
+        temp.pop(-2)
 
 def Graham_s_Scan(points):
         
@@ -70,27 +68,32 @@ def Graham_s_Scan(points):
 if __name__ == '__main__':
     
     convex_hull = []
+    points = []
+    points_number = 10000
     
-    points_number = 1000
-    points = [Point(random.randint(-5000, 5000),random.randint(-5000, 5000)) for i in range(points_number)]  # create random points
+    while len(points) < points_number:
+        new_point = Point(random.randint(-5000, 5000), random.randint(-5000, 5000))
+        if new_point not in points:  # Check if the point is not already in the list
+            points.append(new_point)
 
-    plt.scatter([point.x for point in points], [point.y for point in points], color='blue', marker='o', label='Points')
-    plt.show()
+    start_time = time.time()
 
-    for i in range(len(points)): 
-        points[i].print()
-    
     convex_hull = Graham_s_Scan(points)
-
+    
+    end_time = time.time()
+    print("-------------")
     print("Convex Hull:")
     print("-------------")
     for i in range(len(convex_hull)): 
         convex_hull[i].print()
     print("-------------")
+    elapsed_time = end_time - start_time
+    print("Elapsed Time:", elapsed_time, "seconds")
 
     plt.scatter([point.x for point in points], [point.y for point in points], color='blue', marker='o', label='Points')
+    plt.scatter([point.x for point in convex_hull], [point.y for point in convex_hull], color='red', marker='o', label='Points')
 
     for i in range(len(convex_hull)):
         plt.plot([convex_hull[i].x, convex_hull[(i+1) % len(convex_hull)].x], [convex_hull[i].y, convex_hull[(i+1) % len(convex_hull)].y], 'k-')
-        
+
     plt.show()
