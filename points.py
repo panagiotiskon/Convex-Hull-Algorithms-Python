@@ -18,7 +18,7 @@ def orientation(p0, p1, p2):
     res = ((p1.x - p0.x)*(p2.y - p0.y))-((p2.x - p0.x)*(p1.y- p0.y))
     if res > 0:     #   CCW
         return 1
-    elif res < 0:
+    elif res < 0:   #   CW
         return 2
     elif res == 0:
         return 0

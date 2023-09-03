@@ -1,5 +1,7 @@
 from giftwrapping import *
 from graham import *
+from divide_and_conquer import *
+from quickhull import *
 import random
 import time
 import matplotlib.pyplot as plt
@@ -31,6 +33,20 @@ def main(argv):
     elif algorithm =="gift":
         start_time = time.time()
         convex_hull= GiftWrapping(points)
+        end_time = time.time()
+
+    elif algorithm =="div":
+        start_time = time.time()
+        convex_hull = Divide_and_Conquer(points)
+        end_time = time.time()
+    
+    elif algorithm =="quick":
+        start_time = time.time()
+        convex_hull = Quickhull(points)
+        end_time = time.time()
+        
+    elif algorithm == "3d":
+        start_time = time.time()
         end_time = time.time()
 
     print("-------------")
