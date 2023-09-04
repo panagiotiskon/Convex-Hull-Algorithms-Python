@@ -25,30 +25,30 @@ def main(argv):
             points.append(new_point)
 
 
-    if algorithm == "incremental":
+    if algorithm == "Incremental":
         start_time = time.time()
         convex_hull = Graham_s_Scan(points)
         end_time = time.time()
 
-    elif algorithm =="gift":
+    elif algorithm =="Gift":
         start_time = time.time()
         convex_hull= GiftWrapping(points)
         end_time = time.time()
 
-    elif algorithm =="div":
+    elif algorithm =="Divide":
         start_time = time.time()
         convex_hull = Divide_and_Conquer(points)
         end_time = time.time()
     
-    elif algorithm =="quick":
+    elif algorithm =="Quickhull":
         start_time = time.time()
-        convex_hull = Quickhull(points)
+        convex_hull = Quickhull(points, 0)
         end_time = time.time()
-        
-    elif algorithm == "3d":
-        start_time = time.time()
-        end_time = time.time()
-
+    
+    elif algorithm =="visual":
+        convex_hull = Quickhull(points, 1)
+        start_time =1
+        end_time = 1
     print("-------------")
     print("Convex Hull:")
     print("-------------")
