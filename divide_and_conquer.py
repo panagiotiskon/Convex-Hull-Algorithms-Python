@@ -45,7 +45,6 @@ def Divide_and_Conquer(points):
     b_index = chr.index(bj) % len(chr)
 
     while True:
-
         next_index = (a_index - 1) % len(chl)
         third_index = get_index(chl, a_index, next_index) % len(chl)
 
