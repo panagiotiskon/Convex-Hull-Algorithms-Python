@@ -1,10 +1,9 @@
 from points import *
 from scipy.spatial import ConvexHull
-from graham import *
 
 ######################################################################################
 #                   In this implementation of the algorithmn                         #
-#       for a low number of points Graham's Scan algorithm is also used              #
+#       for a low number of points Scipy's QuickHull algorithm is also used          #
 ######################################################################################
 
 
@@ -47,17 +46,13 @@ def merge(chl, chr):
     a_index = 0 
     b_index = 0
 
-    # get the index of ai 
-    
-    for i in range(1,len(chl)):
-        if chl[i].x > chl[a_index].x:
-            a_index = i 
-    
-    # get index of bj 
-    
-    for i in range(1,len(chr)):
-        if chr[i].x < chr[b_index].x:
-            b_index = i 
+    # Find the leftmost point in chl and the rightmost point in chr
+    ai = max(chl, key=lambda point: point.x)
+    bj = min(chr, key=lambda point: point.x)
+
+    # Find ai (leftmost in chl) and bj (rightmost in chr)
+    a_index = chl.index(ai)
+    b_index = chr.index(bj)
             
     # get final ai and bj both upper and lower
 
@@ -96,10 +91,15 @@ def Divide_and_Conquer(points):
     p = sorted(points, key = lambda k:[k.x, k.y])
 
     n = len(points)
-
+    
+    # for a low number of points return ch
+    
     if(n<6):
-        return Graham_s_Scan(points)
         
+        ch = ConvexHull([(point.x, point.y) for point in points])
+        hull_points = [points[i] for i in ch.vertices]
+        return hull_points
+    
     mid =  n // 2
     
     ch = []

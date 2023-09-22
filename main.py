@@ -17,13 +17,17 @@ def main(argv):
         return -1
     
     points_number = int(argv[1])
+    
+    if(points_number<3):
+        print("Wrong Number of Points")
+        return -1
+
     algorithm = argv[2]
 
     while len(points) < points_number:
         new_point = Point(random.randint(-5000, 5000), random.randint(-5000, 5000))
         if new_point not in points:  # Check if the point is not already in the list
             points.append(new_point)
-
 
     if algorithm == "Incremental":
         start_time = time.time()

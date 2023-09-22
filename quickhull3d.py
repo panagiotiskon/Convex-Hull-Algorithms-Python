@@ -16,11 +16,8 @@ class Point:
 
 
 def main(argv):
+    
     convex_hull = []
-
-    if len(argv)!=2:
-        print("Wrong Arguments!")
-        return -1
     
     points_number = int(argv[1])
 

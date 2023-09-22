@@ -15,9 +15,11 @@ def Graham_s_Scan(points):
         print("Not enough Points Given\n")
         return points
     
-    p = sorted(points, key = lambda k: [k.x, k.y])    # sort the list of points 
+    # sort the list of points 
 
-    # CONSTRUCT Lupper
+    p = sorted(points, key = lambda k: [k.x, k.y])   
+    
+    # construct Lupper
 
     Lupper.append(p[0])
     Lupper.append(p[1])
@@ -29,7 +31,7 @@ def Graham_s_Scan(points):
     for i in range(len(Lupper)):
         convex_hull.append(Lupper[i])
 
-    # CONSTRUCT Llower
+    # construct Llower
 
     Llowwer.append(p[-1])
     Llowwer.append(p[-2])

@@ -4,25 +4,21 @@ from points import *
 def GiftWrapping(points):
     
     vertexes = []
-
-    if len(points)<= 3:
-        print("Not enough Points Given\n")
-        return points
-    
-    r0 = min(points, key = lambda k:[k.x, k.y])   # select the leftmost point
-
-    vertexes.append(r0)                 # add r0 to convex hull
+    # select the leftmost point
+    r0 = min(points, key = lambda k:[k.x, k.y])   
+    # add r0 to convex hull
+    vertexes.append(r0)                 
     
     while True:
-
-        r = vertexes[-1]     # r is the last vertex to be added 
-        u = points[0]       # to make sure the algorithm works always pick the first out of points for u
+        # r is the last vertex to be added 
+        r = vertexes[-1]     
+        # to make sure the algorithm works always pick the first out of points for u
+        u = points[0]       
 
         for t in points:
-
             if(u.same(t)==True):
                 continue
-            if(orientation(r,u,t)==2):
+            if(orientation(r,u,t)==2 or orientation(r,u,t)==0):
                 u = t
 
         if(u.same(r0)==True):
