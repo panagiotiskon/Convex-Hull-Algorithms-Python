@@ -1,7 +1,7 @@
-from giftwrapping import *
-from graham import *
-from divide_and_conquer import *
-from quickhull import *
+from Giftwrapping import *
+from Graham import *
+from Divide_and_Conquer import *
+from Quickhull import *
 import random
 import time
 import matplotlib.pyplot as plt
@@ -25,7 +25,7 @@ def main(argv):
     algorithm = argv[2]
 
     while len(points) < points_number:
-        new_point = Point(random.randint(-5000, 5000), random.randint(-5000, 5000))
+        new_point = Point(random.randint(-50000, 50000), random.randint(-50000, 50000))
         if new_point not in points:  # Check if the point is not already in the list
             points.append(new_point)
 
@@ -60,7 +60,11 @@ def main(argv):
     for i in range(len(convex_hull)): 
         convex_hull[i].print()
     print("-------------")
+    
     elapsed_time = end_time - start_time
+    #print(elapsed_time)
+    
+   
     print("Elapsed Time:", elapsed_time, "seconds")
 
     plt.scatter([point.x for point in points], [point.y for point in points], color='blue', marker='o', label='Points')
@@ -70,7 +74,7 @@ def main(argv):
         plt.plot([convex_hull[i].x, convex_hull[(i+1) % len(convex_hull)].x], [convex_hull[i].y, convex_hull[(i+1) % len(convex_hull)].y], 'k-')
 
     plt.show()
-
+    
 
 if __name__ == '__main__':
     main(sys.argv)
