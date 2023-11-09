@@ -5,9 +5,9 @@ At the end of the execution, the Convex Hull edges and the elapsed time are prin
 ## How to Run: 
     python3 main.py <select number of points> <select algorithm>
 ### Algorithms to choose:
-  - Incremental
-  - Gift
-  - Divide
+  - Incremental (Graham's Scan)    
+  - Gift    (GiftWrapping)
+  - Divide    (Divide & Conquer)
   - Quickhull
   - visual (visual representation of Quickhull)
 ### Prerequisites:
